@@ -1,21 +1,45 @@
+<?php include "pdo/connection.php"; ?>
 <html>
-<?php include "parts/navbar.php" ?>
+<?php include "parts/navbar.php"; ?>
 
 <body>
-    <a href="form.php">
+    <div class="container">
+
         <div class="row">
-            <?php foreach ($item as $todo) { ?>
-                <div class="col-6">
-                    <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Header</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Light card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">taak</th>
+                        <th scope="col">bescrijving</th>
+                        <th scope="col">status</th>
+                        <th scope="col">duur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>taak</td>
+                        <td>bescrijving</td>
+                        <td>status</td>
+                        <td>duur</td>
+                    </tr>
+                    <tr>
+                        <td>taak</td>
+                        <td>bescrijving</td>
+                        <td>status</td>
+                        <td>duur</td>
+                    </tr>
+                    <tr>
+                        <td>taak</td>
+                        <td>bescrijving</td>
+                        <td>status</td>
+                        <td>duur</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
+    </div>
 </body>
 
 </html>
