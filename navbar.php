@@ -1,3 +1,4 @@
+<html>
 <header>
 
   <h1>ToDolist</h1>
@@ -13,12 +14,14 @@
         <a class="nav-link" href="/ToDolist/index.php">Home <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/ToDolist/form/TaakForm/add.php">Add task</a>
+        <a class="nav-link" href="/ToDolist/form/LijstForm/add.php">Add list</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/ToDolist/form/LijstForm/add.php">add list</a>
+        <a class="nav-link" href="/ToDolist/form/TaakForm/add.php">Add task</a>
       </li>
     </ul>
   </nav>
-
+  <?php include("connection.php") ?>
   <header>
+
+    <body>

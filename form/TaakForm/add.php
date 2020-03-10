@@ -1,70 +1,41 @@
 <?php
-include "../../pdo/connection.php";
+include("../../navbar.php");
 
+if (isset($_POST["submit"])) {
+    $taak = $_POST["inputTaak"];
+    $beschrijving = $_POST["inputBeschrijving"];
+    $status = $_POST["inputStatus"];
+    $duur = $_POST["inputDuur"];
+    $lijst = $_POST["inputLijst"];
 
-if (isset($_POST['submit'])) {
-    try {
+    $stmt = $conn->prepare("INSERT INTO todo (taak , beschrijving , status, duur , lijstId) VALUES (:taak, :beschrijving, :status, :duur , :lijst);");
+    $stmt->bindParam(":taak", $taak);
+    $stmt->bindParam(":beschrijving", $beschrijving);
+    $stmt->bindParam(":status", $status);
+    $stmt->bindParam(":duur", $duur);
+    $stmt->bindParam(":lijst", $lijst);
+    $stmt->execute();
 
-        $taak = $_POST['taak'];
-        $beschrijving = $_POST['beschrijving'];
-        $duur = $_POST['duur'];
-        $status = $_POST['status'];
-        $lijstId = $_POST['lijstId'];
-
-        var_dump($taak);
-        var_dump($beschrijving);
-        var_dump($duur);
-        var_dump($status);
-        var_dump($lijstId);
-        $stmt = $conn->prepare("INSERT INTO lijsten (naam) VALUES ('test')");
-        
-        var_dump($stmt);
-        // $stmt->bind_Param(":taak", $taak);
-        // $stmt->bind_Param(":beschrijving", $beschrijving);
-        // $stmt->bind_Param(":duur", $duur);
-        // $stmt->bind_Param(":status", $status);
-        // $stmt->bind_Param(":lijstId", $lijstId);
-        $stmt->execute();
-    } catch (PDOException $e) {
-
-        echo "Failed to Add task: " . $e->getMessage();
-    }
+    header("Location: ../../index.php");
 }
-
-
-
-
-
-
-
-
 ?>
-<html>
-<?php include "../../parts/navbar.php" ?>
 
-<body>
-    <div class="container">
-        <form action=" " method="post">
-            <br>
-            <label for="taak">Taak</label>
-            <input type="text" id="taak" name="taak"><br>
+<main class="container">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+        <div class="form-group">
+            <label for="inputTaak">Taak</label>
+            <input type="text" name="inputTaak" class="form-control" id="inputTaak" placeholder="Taak" required>
+            <label for="inputBeschrijving">Beschrijving</label>
+            <input type="text" name="inputBeschrijving" class="form-control" id="inputBeschrijving" placeholder="Beschrijving" required>
+            <label for="inputStatus">Status</label>
+            <input type="text" name="inputStatus" class="form-control" id="inputStatus" placeholder="Status" required>
+            <label for="inputDuur">Duur</label>
+            <input type="time" name="inputDuur" class="form-control" id="inputName" required>
+            <label for="inputLijst">Lijst id</label>
+            <input type="number" name="inputLijst" class="form-control" id="inputLijst" placeholder="Lijst id" required>
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary">Add</button>
+    </form>
+</main>
 
-            <label for="beschrijving">Beschrijving</label>
-            <input type="text" id="beschrijving" name="beschrijving"><br>
-
-            <label for="duur">Duur</label>
-            <input type="time" id="duur" name="duur">
-
-            <label for="status">Status</label>
-            <input type="text" id="status" name="status"><br>
-
-            <label for="lijstId">lijst</label>
-            <input type="number" id="lijstId" name="lijstId">
-
-            <input type="submit" name="submit">
-
-        </form>
-    </div>
-</body>
-
-</html>
+<?php include("../../footer.php"); ?>
