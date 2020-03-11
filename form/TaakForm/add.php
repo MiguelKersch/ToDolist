@@ -1,6 +1,11 @@
 <?php
 include("../../navbar.php");
 
+$sql = "select * from lijsten";
+$query = $conn->prepare($sql);
+$query->execute();
+$result = $query->fetchAll();
+
 if (isset($_POST["submit"])) {
     $taak = $_POST["inputTaak"];
     $beschrijving = $_POST["inputBeschrijving"];
@@ -32,7 +37,11 @@ if (isset($_POST["submit"])) {
             <label for="inputDuur">Duur</label>
             <input type="time" name="inputDuur" class="form-control" id="inputName" required>
             <label for="inputLijst">Lijst id</label>
-            <input type="number" name="inputLijst" class="form-control" id="inputLijst" placeholder="Lijst id" required>
+            <select name="inputLijst" class="form-control" id="inputLijst" required>
+            <?php foreach ($result as $row) { ?>
+                <option value="<?php echo $row['id'] ?>"><?php echo $row['naam'] ?></option>
+            <?php } ?>
+            </select>
         </div>
         <button type="submit" name="submit" class="btn btn-primary">Add</button>
     </form>
