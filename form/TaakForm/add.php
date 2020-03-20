@@ -33,14 +33,18 @@ if (isset($_POST["submit"])) {
             <label for="inputBeschrijving">Beschrijving</label>
             <input type="text" name="inputBeschrijving" class="form-control" id="inputBeschrijving" placeholder="Beschrijving" required>
             <label for="inputStatus">Status</label>
-            <input type="text" name="inputStatus" class="form-control" id="inputStatus" placeholder="Status" required>
+            <select name="inputStatus" class="form-control" id="inputStatus" placeholder="Status" required>
+                <option value="Niet begonnen">Niet begonnen</option>
+                <option value="Bezig">Bezig</option>
+                <option value="Afgerond">Afgerond</option>
+            </select>
             <label for="inputDuur">Duur</label>
             <input type="time" name="inputDuur" class="form-control" id="inputName" required>
             <label for="inputLijst">Lijst id</label>
             <select name="inputLijst" class="form-control" id="inputLijst" required>
-            <?php foreach ($result as $row) { ?>
-                <option value="<?php echo $row['id'] ?>"><?php echo $row['naam'] ?></option>
-            <?php } ?>
+                <?php foreach ($result as $row) { ?>
+                    <option value="<?php echo $row['id'] ?>"><?php echo $row['naam'] ?></option>
+                <?php } ?>
             </select>
         </div>
         <button type="submit" name="submit" class="btn btn-primary">Add</button>

@@ -9,7 +9,7 @@ $query->execute();
 
 $result = $query->fetch();
 if (isset($_POST["submit"])) {
-    $naam = $_GET['inputName'];
+    $naam = $_POST['inputName'];
 
     $sql = 'UPDATE lijsten SET (naam) VALUES (:naam) WHERE id = :id ';
 

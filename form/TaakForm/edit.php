@@ -1,19 +1,20 @@
 <?php
 
-    include("../../navbar.php");
-    $id = $_GET['id'];
+include("../../navbar.php");
+$id = $_GET['id'];
 
-    $sql = "SELECT * from lijsten";
-    $query = $conn->prepare($sql);
-    $query->execute();
-    $lijstResult = $query->fetchAll();
 
-    $sql = "SELECT * from todo where id = :id";
-    $query = $conn->prepare($sql);
-    $query->bindParam(":id", $id);
-    $query->execute();
+$sql = "SELECT * from lijsten";
+$query = $conn->prepare($sql);
+$query->execute();
+$lijstResult = $query->fetchAll();
 
-    $result = $query->fetch();
+$sql = "SELECT * from todo where id = :id";
+$query = $conn->prepare($sql);
+$query->bindParam(":id", $id);
+$query->execute();
+
+$result = $query->fetch();
 
 if (isset($_POST["submit"])) {
     $taak = $_POST["inputTaak"];
@@ -29,8 +30,6 @@ if (isset($_POST["submit"])) {
     $stmt->bindParam(":duur", $duur);
     $stmt->bindParam(":lijst", $lijst);
     $stmt->execute();
-
-    header("Location: /ToDolist/index.php");
 }
 
 ?>
@@ -43,7 +42,11 @@ if (isset($_POST["submit"])) {
             <label for="inputBeschrijving">Beschrijving</label>
             <input type="text" name="inputBeschrijving" class="form-control" id="inputBeschrijving" value="<?php echo $result['beschrijving'] ?>" required>
             <label for="inputStatus">Status</label>
-            <input type="text" name="inputStatus" class="form-control" id="inputStatus" value="<?php echo $result['status'] ?>" required>
+            <select name="inputStatus" class="form-control" id="inputStatus" value="<?php echo $result['status'] ?>" required>
+                <option value="Niet begonnen">Niet begonnen</option>
+                <option value="Bezig">Bezig</option>
+                <option value="Afgerond">Afgerond</option>
+            </select>
             <label for="inputDuur">Duur</label>
             <input type="time" name="inputDuur" class="form-control" id="inputName" value="<?php echo $result['duur'] ?>" required>
             <label for="inputLijst">Lijst id</label>
@@ -53,6 +56,7 @@ if (isset($_POST["submit"])) {
                 <?php } ?>
             </select>
         </div>
+        <button type="submit" name="submit" class="btn btn-primary">Add</button>
     </form>
 </main>
 

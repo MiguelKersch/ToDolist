@@ -1,4 +1,3 @@
-<html>
 <?php include "navbar.php"; ?>
 
 <?php
@@ -8,18 +7,11 @@ $query->execute();
 $result = $query->fetchAll();
 
 ?>
-<script type="text/javascript">
-    function isValid() {
-        if (!confirm('weet u zeker dat u dit wilt verwijderen?')) {
-            return false;
-        }
-        return true;
-    }
-</script>
 
-<body>
+
+
+
     <div class="container">
-
         <div class="row">
             <h2>Lijsten</h2>
             <table class="table table-striped">
@@ -37,9 +29,9 @@ $result = $query->fetchAll();
                         <tr>
                             <td><?php echo $row['id'] ?></td>
                             <td><?php echo $row['naam'] ?></a></td>
-                            <td><a href="taken.php?id=<?php echo $row['id'] ?>""><i id=" show" class="fas fa-eye"></i></a></td>
-                            <td><a href="form/lijstForm/edit.php?id=<?php echo $row['id'] ?>"><i id="edit" class="fas fa-edit"></i></a></td>
-                            <td><a onclick="return isValid()" href="form/lijstForm/delete.php?id=<?php echo $row['id'] ?>"><i id="trash" class="fas fa-trash-alt"></i></a></td>
+                            <td><a href="taken.php?id=<?php echo $row['id'] ?>""><i id=" show" class="fas fa-eye text-dark"></i></a></td>
+                            <td><a href="form/lijstForm/edit.php?id=<?php echo $row['id'] ?>"><i id="edit" class="fas fa-edit text-dark"></i></a></td>
+                            <td><a onclick="return isValid()" href="form/lijstForm/delete.php?id=<?php echo $row['id'] ?>"><i id="trash" class="fas fa-trash-alt text-danger"></i></a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -47,4 +39,12 @@ $result = $query->fetchAll();
 
         </div>
     </div>
+    <script type="text/javascript">
+        function isValid() {
+            if (!confirm('weet u zeker dat u dit wilt verwijderen?')) {
+                return false;
+            }
+            return true;
+        }
+    </script>
     <?php include("footer.php") ?>
