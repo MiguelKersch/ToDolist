@@ -8,24 +8,24 @@ $query->bindParam(":id", $id);
 $query->execute();
 
 $result = $query->fetch();
+
 if (isset($_POST["submit"])) {
     $naam = $_POST['inputName'];
 
     $sql = 'UPDATE lijsten SET (naam) VALUES (:naam) WHERE id = :id ';
+    $stmt = $conn->prepare($sql);
 
-    $query = $conn->prepare($sql);
-    $query->bindParam(":naam", $naam);
-
-
-
-    $query->execute();
+    $stmt->bindParam(":naam", $naam);
+    $stmt->execute();
     header("location:/ToDolist/index.php");
 }
+
+
 
 ?>
 
 <main class="container">
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'] . "?id=" . $id); ?>" method="POST">
         <div class="form-group">
             <label for="inputName">Name</label>
             <input type="text" name="inputName" class="form-control" id="inputName" value="<?php echo $result['naam'] ?>" required>

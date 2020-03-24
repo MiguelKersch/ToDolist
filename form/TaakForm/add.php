@@ -38,8 +38,8 @@ if (isset($_POST["submit"])) {
                 <option value="Bezig">Bezig</option>
                 <option value="Afgerond">Afgerond</option>
             </select>
-            <label for="inputDuur">Duur</label>
-            <input type="time" name="inputDuur" class="form-control" id="inputName" required>
+            <label for="inputDuur">Duur in minuten</label>
+            <input type="integer" name="inputDuur" class="form-control" id="inputName" required>
             <label for="inputLijst">Lijst id</label>
             <select name="inputLijst" class="form-control" id="inputLijst" required>
                 <?php foreach ($result as $row) { ?>
