@@ -1,7 +1,7 @@
 <?php
 include("../../navbar.php");
 
-$Taskid = $_GET['id'];
+$id = $_GET['id'];
 
 
 $sql = "SELECT * from lijsten";
@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
     $lijst = $_POST["inputLijst"];
     var_dump($_POST);
   
-    $sql = "UPDATE todo SET (taak = :taak , beschrijving = :beschrijving , status = :status  , duur = :duur , lijstId = :lijst) WHERE id = :taskId ";
+    $sql = "UPDATE todo SET taak = :taak , beschrijving = :beschrijving , status = :status  , duur = :duur , lijstId = :lijst WHERE id = :taskId ";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":taskId", $Taskid);
     $stmt->bindParam(":taak", $taak);

@@ -10,11 +10,12 @@ $query->execute();
 $result = $query->fetch();
 
 if (isset($_POST["submit"])) {
+    $lijstId = $_GET["id"];
     $naam = $_POST['inputName'];
 
-    $sql = 'UPDATE lijsten SET (naam) VALUES (:naam) WHERE id = :id ';
+    $sql = 'UPDATE lijsten SET naam = :naam WHERE id = :lijstId';
     $stmt = $conn->prepare($sql);
-
+    $stmt->bindParam(":lijstId", $lijstId);
     $stmt->bindParam(":naam", $naam);
     $stmt->execute();
     header("location:/ToDolist/index.php");
