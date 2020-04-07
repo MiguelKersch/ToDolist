@@ -20,10 +20,10 @@ $result = $query->fetchAll();
             <div class="col">
                 <h2>Lijsten</h2>
             </div>
-            <div class="col"><button class="btn" onclick="filterList('all');">alles</button></div>
-            <div class="col"><button class="btn" onclick="filterList('Bezig');">Bezig</button></div>
-            <div class="col"><button class="btn" onclick="filterList('Afgerond');">Afgerond</button></div>
-            <div class="col"><button class="btn" onclick="filterList('Niet begonnen');">Niet begonnen</button></div>
+            <div class="col"><button class="btn" onclick="filter('all');">alles</button></div>
+            <div class="col"><button class="btn" onclick="filter('Bezig');">Bezig</button></div>
+            <div class="col"><button class="btn" onclick="filter('Afgerond');">Afgerond</button></div>
+            <div class="col"><button class="btn" onclick="filter('Niet begonnen');">Niet begonnen</button></div>
         </div>
     </div>
     <div class="container">
@@ -32,7 +32,7 @@ $result = $query->fetchAll();
                 <tr>
                     <th scope="col">Naam</th>
                     <th scope="col">Beschrijving</th>
-                    <th scope="col"><a onclick="filter();">status</a></th>
+                    <th scope="col">Status</th>
                     <th scope="col"><a onclick="filter();">duur</th>
                     <th scope="col"></th>
                     <th scope="col"><a href="/Todolist/index.php"><i class="fas fa-arrow-left text-light"></i></a></th>
@@ -40,10 +40,10 @@ $result = $query->fetchAll();
             </thead>
             <tbody>
                 <?php foreach ($result as $row) { ?>
-                    <tr>
+                    <tr class='trow'>
                         <td><?php echo $row['taak'] ?></td>
                         <td><?php echo $row['beschrijving'] ?></td>
-                        <td><?php echo $row['status'] ?></td>
+                        <td class='status'><?php echo $row['status'] ?></td>
                         <td><?php echo $row['duur'] ?></td>
                         <td><a href="form/TaakForm/edit.php?id=<?php echo $row['id'] ?>"><i id="edit" class="fas fa-edit text-dark"></i></a></td>
                         <td><a onclick="return isValid()" href="form/TaakForm/delete.php?id=<?php echo $row['id'] ?>&lijstId=<?php echo $id ?>"><i id="trash" class="fas fa-trash-alt text-danger"></i></a></td>
@@ -65,3 +65,4 @@ $result = $query->fetchAll();
         return true;
     }
 </script>
+</script src="script/filter.js"></script>
