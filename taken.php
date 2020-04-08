@@ -20,10 +20,12 @@ $result = $query->fetchAll();
             <div class="col">
                 <h2>Lijsten</h2>
             </div>
-            <div class="col"><button class="btn" onclick="filter('all');">alles</button></div>
+            <div class="col"><button class="btn" onclick="filter('all');">Alles</button></div>
             <div class="col"><button class="btn" onclick="filter('Bezig');">Bezig</button></div>
             <div class="col"><button class="btn" onclick="filter('Afgerond');">Afgerond</button></div>
             <div class="col"><button class="btn" onclick="filter('Niet begonnen');">Niet begonnen</button></div>
+            <div class="col"><button id="duurButton" class="btn" onclick="sort();">sort duur</button></div>
+            <div></div>
         </div>
     </div>
     <div class="container">
@@ -44,7 +46,7 @@ $result = $query->fetchAll();
                         <td><?php echo $row['taak'] ?></td>
                         <td><?php echo $row['beschrijving'] ?></td>
                         <td class='status'><?php echo $row['status'] ?></td>
-                        <td><?php echo $row['duur'] ?></td>
+                        <td class="duur"><?php echo $row['duur'] ?></td>
                         <td><a href="form/TaakForm/edit.php?id=<?php echo $row['id'] ?>"><i id="edit" class="fas fa-edit text-dark"></i></a></td>
                         <td><a onclick="return isValid()" href="form/TaakForm/delete.php?id=<?php echo $row['id'] ?>&lijstId=<?php echo $id ?>"><i id="trash" class="fas fa-trash-alt text-danger"></i></a></td>
                     </tr>
