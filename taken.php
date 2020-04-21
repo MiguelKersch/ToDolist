@@ -2,8 +2,10 @@
 <?php include "navbar.php"; ?>
 
 <?php
+// haalt de id op
 $id = $_GET['id'];
 
+// selecteert alle resultaten waar 
 $sql = "select todo.id, todo.taak, todo.beschrijving, todo.status, todo.duur from todo INNER JOIN lijsten
 ON lijsten.id = lijstId where lijstId = :id ";
 $query = $conn->prepare($sql);
@@ -41,6 +43,7 @@ $result = $query->fetchAll();
                 </tr>
             </thead>
             <tbody>
+            
                 <?php foreach ($result as $row) { ?>
                     <tr class='trow'>
                         <td><?php echo $row['taak'] ?></td>
